@@ -165,12 +165,16 @@ const Auth = () => {
       formData.append('address', formState.address.value);
       formData.append('image', formState.image.value);
 
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL_API_V1}/users/signup`, {
-        method: 'POST',
-        body: formData,
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL_API_V1}/users/signup`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
 
       const data = await res.json();
+      console.log(data);
       dispatch({ type: 'SET_LOADING', isLoading: false });
 
       if (data.error || !res.ok) {
@@ -194,16 +198,19 @@ const Auth = () => {
   const loginHandler = async () => {
     try {
       dispatch({ type: 'SET_LOADING', isLoading: true });
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL_API_V1}/users/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formState.email.value,
-          password: formState.password.value,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL_API_V1}/users/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formState.email.value,
+            password: formState.password.value,
+          }),
+        }
+      );
 
       const data = await res.json();
       dispatch({ type: 'SET_LOADING', isLoading: false });
