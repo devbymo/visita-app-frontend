@@ -140,8 +140,6 @@ const PlaceItem = (props) => {
     );
   };
 
-  console.log(props.imageURL);
-
   return (
     <StyledPlaceItem className="place-item">
       {/* Modal */}
