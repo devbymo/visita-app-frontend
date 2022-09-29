@@ -118,7 +118,6 @@ const PlaceItem = (props) => {
       );
       const result = await res.json();
 
-      
       if (result.error) {
         console.log(result.error);
       }
@@ -140,6 +139,8 @@ const PlaceItem = (props) => {
       <ReactStars count={rating} value={rating} edit={false} isHalf={true} />
     );
   };
+
+  console.log(props.imageURL);
 
   return (
     <StyledPlaceItem className="place-item">
@@ -194,7 +195,11 @@ const PlaceItem = (props) => {
       {/* Image */}
       <div className="place-item__image">
         <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/${props.imageURL}`}
+          src={
+            props.imageURL
+              ? `${process.env.REACT_APP_BACKEND_URL}/${props.imageURL}`
+              : 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFkcmlkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+          }
           alt={props.placeName}
         />
       </div>
